@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Enable Feature Flag</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
+        button { background: #007acc; color: white; border: none; padding: 10px 20px; margin: 5px; cursor: pointer; border-radius: 4px; }
+        button:hover { background: #005999; }
+        .status { font-weight: bold; color: #007acc; }
+        .enabled { color: green; }
+        .disabled { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Account Type Assets Feature Control</h1>
+    
+    <p>Current Status: <span id="current" class="status"></span></p>
+    
+    <div>
+        <button onclick="enable()">✅ Enable Feature</button>
+        <button onclick="disable()">❌ Disable Feature</button>
+        <button onclick="reload()">🔄 Reload App</button>
+    </div>
+    
+    <div style="margin-top: 30px;">
+        <h3>Instructions:</h3>
+        <ol>
+            <li>Click "Enable Feature" to turn on the Assets table</li>
+            <li>Click "Reload App" to refresh your application</li>
+            <li>Navigate to: <code>http://localhost:5173/management/trading/account-types/new</code></li>
+            <li>You should now see the "Assets Configuration" section</li>
+        </ol>
+    </div>
+
+    <script>
+        function enable() {
+            localStorage.setItem('ff_account_type_asset_rules', '1');
+            update();
+        }
+        
+        function disable() {
+            localStorage.removeItem('ff_account_type_asset_rules');
+            update();
+        }
+        
+        function update() {
+            const current = localStorage.getItem('ff_account_type_asset_rules');
+            const element = document.getElementById('current');
+            if (current === '1') {
+                element.textContent = 'ENABLED';
+                element.className = 'status enabled';
+            } else {
+                element.textContent = 'DISABLED';
+                element.className = 'status disabled';
+            }
+        }
+        
+        function reload() {
+            // Try to reload the main app if it's open in another tab
+            if (window.opener) {
+                window.opener.location.reload();
+            } else {
+                alert('Please manually refresh your application tab at http://localhost:5173');
+            }
+        }
+        
+        // Update status on page load
+        update();
+    </script>
+</body>
+</html>

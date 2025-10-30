@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Filters Demo - EntityTable</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        .feature {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .feature h3 {
+            margin-top: 0;
+            color: #2563eb;
+        }
+        .demo-flow {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        .code {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+        .success {
+            background: #dcfce7;
+            border: 1px solid #86efac;
+            color: #166534;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+        .warning {
+            background: #fef3c7;
+            border: 1px solid #fbbf24;
+            color: #92400e;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🚀 Smart, Type-Aware Filters - EntityTable Enhancement</h1>
+    
+    <div class="success">
+        <strong>✅ Implementation Complete!</strong> Smart filters have been successfully integrated into EntityTable as a non-destructive enhancement.
+    </div>
+
+    <div class="demo-flow">
+        <h2>🎯 How to Test Smart Filters</h2>
+        <ol>
+            <li><strong>Navigate to any table view</strong> (Leads, Users, etc.) in the application</li>
+            <li><strong>Click the filter icon</strong> (🔍) on any column header</li>
+            <li><strong>Observe the smart filter UI</strong> that adapts to the data type</li>
+            <li><strong>Try different filter types</strong> and see the intelligent controls</li>
+        </ol>
+    </div>
+
+    <div class="feature">
+        <h3>📝 Text Columns</h3>
+        <p><strong>Auto-detected for:</strong> firstName, lastName, email, etc.</p>
+        <p><strong>Controls:</strong> Condition dropdown (Contains, Equals, Starts with, Ends with) + text input</p>
+        <p><strong>Example:</strong> Filter "firstName" contains "John" or starts with "M"</p>
+    </div>
+
+    <div class="feature">
+        <h3>🔢 Number Columns</h3>
+        <p><strong>Auto-detected for:</strong> age, balance, deposits, etc.</p>
+        <p><strong>Controls:</strong> Condition dropdown (=, ≥, ≤, Between) + number inputs</p>
+        <p><strong>Example:</strong> Filter "age" between 25-65 or balance ≥ 1000</p>
+    </div>
+
+    <div class="feature">
+        <h3>📅 Date/DateTime Columns</h3>
+        <p><strong>Auto-detected for:</strong> createdAt, lastLoginAt, etc. (fields ending in "At" or "Date")</p>
+        <p><strong>Controls:</strong> Condition dropdown + datetime-local picker(s)</p>
+        <p><strong>Example:</strong> Filter "createdAt" between specific dates</p>
+    </div>
+
+    <div class="feature">
+        <h3>✅ Boolean Columns</h3>
+        <p><strong>Auto-detected for:</strong> regulation, isActive, etc.</p>
+        <p><strong>Controls:</strong> Checkbox for True/False selection</p>
+        <p><strong>Example:</strong> Filter "regulation" = true</p>
+    </div>
+
+    <div class="feature">
+        <h3>📋 Enum/Multi-Select Columns</h3>
+        <p><strong>Auto-detected for:</strong> Zod enums, predefined options</p>
+        <p><strong>Controls:</strong> Multi-select checkboxes or single select</p>
+        <p><strong>Example:</strong> Filter "accountType" in [Demo, Live, VIP]</p>
+    </div>
+
+    <div class="feature">
+        <h3>🔗 Relation Columns</h3>
+        <p><strong>Auto-detected for:</strong> conversationOwnerId, accountTypeId (fields ending in "Id")</p>
+        <p><strong>Controls:</strong> Searchable multi-select with async data loading</p>
+        <p><strong>Example:</strong> Filter "conversationOwnerId" in [John Smith, Jane Doe]</p>
+        <p><strong>Note:</strong> Currently using mock data - can be connected to real API endpoints</p>
+    </div>
+
+    <div class="warning">
+        <strong>🛡️ Non-Destructive Design:</strong> If type inference fails or no smart control is available, 
+        the system automatically falls back to the original simple text input. No breaking changes!
+    </div>
+
+    <h2>🏗️ Technical Implementation</h2>
+
+    <div class="feature">
+        <h3>File Structure Created</h3>
+        <div class="code">
+src/filters/
+  ├── types.ts                    # FilterOp & NormalizedFilter types
+  ├── relationCatalog.ts          # Relation mapping configuration
+  └── infer.ts                    # Type inference & filter utilities
+
+src/components/tables/filters/
+  └── SmartFilterControl.tsx      # Main smart filter component
+        </div>
+    </div>
+
+    <div class="feature">
+        <h3>Key Features</h3>
+        <ul>
+            <li><strong>Type Inference:</strong> Automatic detection from field names and Zod schemas</li>
+            <li><strong>Relation Catalog:</strong> Configurable mapping for ID-based lookups</li>
+            <li><strong>Fallback Support:</strong> Graceful degradation to simple text input</li>
+            <li><strong>Non-Destructive:</strong> Existing filter functionality preserved</li>
+            <li><strong>Extensible:</strong> Easy to add new filter types and behaviors</li>
+        </ul>
+    </div>
+
+    <div class="feature">
+        <h3>Filter Output Format</h3>
+        <div class="code">
+// NormalizedFilter examples:
+{ kind: 'text', op: 'contains', value: 'John' }
+{ kind: 'number', op: 'between', value: [25, 65] }
+{ kind: 'date', op: 'gte', value: '2024-01-01T00:00:00' }
+{ kind: 'boolean', op: 'eq', value: true }
+{ kind: 'enum', op: 'in', value: ['Demo', 'Live'] }
+{ kind: 'relation', op: 'in', value: ['user1', 'user2'] }
+        </div>
+    </div>
+
+    <h2>🔄 Future Enhancements</h2>
+    <div class="feature">
+        <ul>
+            <li><strong>Real API Integration:</strong> Connect relation filters to actual endpoints</li>
+            <li><strong>Zod Schema Integration:</strong> Pass schema objects for better type detection</li>
+            <li><strong>Custom Filter Metadata:</strong> Override inference with column-specific configs</li>
+            <li><strong>Advanced Date Ranges:</strong> Relative dates (last week, this month, etc.)</li>
+            <li><strong>Saved Filter Presets:</strong> User-defined filter combinations</li>
+        </ul>
+    </div>
+
+    <div class="success">
+        <p><strong>🎉 Ready to Use!</strong> Navigate to the main application and start testing the enhanced filtering capabilities in any EntityTable instance.</p>
+    </div>
+</body>
+</html>
