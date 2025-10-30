@@ -1,0 +1,599 @@
+@import 'tailwindcss';
+@import "tw-animate-css";
+
+@layer base {
+  * {
+    @apply border-border;
+    font-family: 'Poppins', 'Helvetica', sans-serif !important;
+  }
+
+  /* Remove focus rings globally across the CRM */
+  *:focus,
+  *:focus-visible,
+  *:focus-within {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Remove focus rings from all input elements */
+  input:focus,
+  textarea:focus,
+  select:focus,
+  button:focus,
+  [contenteditable]:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Remove focus rings from Material-UI components */
+  .MuiInputBase-root:focus-within,
+  .MuiOutlinedInput-root:focus-within,
+  .MuiTextField-root:focus-within,
+  .MuiSelect-root:focus-within,
+  .MuiButton-root:focus,
+  .MuiIconButton-root:focus,
+  .MuiFormControl-root:focus-within {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Remove focus rings from specific input elements */
+  .MuiInputBase-input:focus,
+  .MuiOutlinedInput-input:focus,
+  .MuiSelect-select:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Remove focus rings from Flowbite components */
+  .flowbite input:focus,
+  .flowbite select:focus,
+  .flowbite textarea:focus,
+  .flowbite button:focus,
+  [class*="flowbite"]:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Remove focus rings from Tailwind focus utilities */
+  .focus\:ring-0:focus,
+  .focus\:outline-none:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Override table header text transform to use proper case */
+  th,
+  .flowbite th,
+  [class*="TableHead"],
+  [class*="tableHead"] {
+    text-transform: none !important;
+  }
+  
+  html {
+    font-family: 'Poppins', 'Helvetica', sans-serif !important;
+  }
+  
+  body {
+    font-family: 'Poppins', 'Helvetica', sans-serif !important;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  
+  #root {
+    font-family: 'Poppins', 'Helvetica', sans-serif !important;
+  }
+
+  /* Header font sizes and weights */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', 'Helvetica', sans-serif !important;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  h1 { font-size: 24px; font-weight: 600; }
+  h2 { font-size: 20px; font-weight: 600; }
+  h3 { font-size: 18px; font-weight: 500; }
+  h4 { font-size: 16px; font-weight: 500; }
+  h5 { font-size: 14px; font-weight: 500; }
+  h6 { font-size: 12px; font-weight: 500; }
+
+  /* Hide number input spinners */
+  input[type=number]::-webkit-outer-spin-button,
+  input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  input[type=number] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+  }
+
+  /* Ensure all text elements use Poppins with proper defaults */
+  p, span, div, a, button,
+  input, textarea, select, label,
+  th, td, li, ul, ol {
+    font-family: 'Poppins', 'Helvetica', sans-serif !important;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  
+  /* Button specific styling */
+  button {
+    font-weight: 500;
+  }
+  
+  /* Table header styling */
+  th {
+    font-weight: 600;
+  }
+}
+
+/* Additional layer to override any competing font declarations */
+@layer utilities {
+  .font-poppins {
+    font-family: 'Poppins', 'Helvetica', sans-serif !important;
+  }
+  
+  /* Font weight utilities */
+  .font-light { font-weight: 300 !important; }
+  .font-normal { font-weight: 400 !important; }
+  .font-medium { font-weight: 500 !important; }
+  .font-semibold { font-weight: 600 !important; }
+  .font-bold { font-weight: 700 !important; }
+  
+  /* Font size utilities */
+  .text-xs { font-size: 12px !important; }
+  .text-sm { font-size: 14px !important; }
+  .text-base { font-size: 16px !important; }
+  .text-lg { font-size: 18px !important; }
+  .text-xl { font-size: 20px !important; }
+  .text-2xl { font-size: 24px !important; }
+}
+
+:root {
+  --background: oklch(100% 0 0);
+  --foreground: oklch(15% 0 0);
+  
+  --card: oklch(100% 0 0);
+  --card-foreground: oklch(15% 0 0);
+  --popover: oklch(100% 0 0);
+  --popover-foreground: oklch(15% 0 0);
+  
+  --primary: oklch(47% 0.13 230);
+  --primary-foreground: oklch(98% 0 0);
+  --secondary: oklch(96% 0 0);
+  --secondary-foreground: oklch(15% 0 0);
+  --accent: oklch(96% 0 0);
+  --accent-foreground: oklch(15% 0 0);
+  --destructive: oklch(58% 0.15 25);
+  --destructive-foreground: oklch(98% 0 0);
+  
+  --muted: oklch(96% 0 0);
+  --muted-foreground: oklch(45% 0 0);
+  --border: oklch(89% 0 0);
+  --input: oklch(89% 0 0);
+  --ring: oklch(47% 0.13 230);
+
+  --radius: 0.5rem;
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) * 1.5);
+  --radius-xl: calc(var(--radius) * 2);
+  --radius-2xl: calc(var(--radius) * 3);
+  --radius-full: 9999px;
+}
+
+
+
+/* Enhanced leads table styling */
+.positions-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+
+.positions-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.positions-table tbody tr {
+  border-bottom: 1px solid #e5e7eb !important;
+  height: 36px;
+  transition: all 0.2s ease;
+}
+
+.dark .positions-table tbody tr {
+  border-bottom: 1px solid #374151 !important;
+}
+
+.positions-table tbody tr:last-child {
+  border-bottom: 1px solid #e5e7eb !important;
+}
+
+.dark .positions-table tbody tr:last-child {
+  border-bottom: 1px solid #374151 !important;
+}
+
+.positions-table tbody tr:hover {
+  background-color: hsl(var(--accent) / 0.08) !important;
+  box-shadow: inset 0 0 0 1px hsl(var(--accent) / 0.1);
+  transform: translateY(-1px);
+}
+
+.positions-table tbody tr:nth-child(even) {
+  background-color: hsl(var(--muted) / 0.025);
+}
+
+.positions-table tbody tr:nth-child(odd) {
+  background-color: hsl(var(--background));
+}
+
+.positions-table tbody tr[data-state="selected"] {
+  background-color: hsl(var(--accent) / 0.12) !important;
+  border-color: hsl(var(--accent) / 0.3);
+  box-shadow: inset 0 0 0 2px hsl(var(--accent) / 0.2);
+}
+
+.positions-table td {
+  border-right: 1px solid hsl(var(--border) / 0.06);
+  padding: 6px 12px;
+  text-align: left;
+  height: 36px;
+  vertical-align: middle;
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.positions-table td:last-child {
+  border-right: 0;
+}
+
+.positions-table th {
+  background-color: #ffffff !important;
+  border-right: 1px solid #f3f4f6;
+  border-bottom: 1px solid #f3f4f6;
+  font-weight: 600;
+  color: #4b5563 !important;
+  height: 36px;
+  vertical-align: middle;
+  padding: 6px 12px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.positions-table th:last-child {
+  border-right: 0;
+}
+
+/* Remove dark hover effects on table headers */
+.positions-table th:hover {
+  background-color: #f9fafb !important;
+  color: #4b5563 !important;
+}
+
+/* Override any button hover effects in table headers */
+.positions-table th button:hover {
+  background-color: transparent !important;
+  color: #374151 !important;
+}
+
+/* Force light theme for checkboxes */
+.positions-table input[type="checkbox"] {
+  background-color: white !important;
+  border-color: #d1d5db !important;
+  color: #3b82f6 !important;
+}
+
+.positions-table input[type="checkbox"]:checked {
+  background-color: #3b82f6 !important;
+  border-color: #3b82f6 !important;
+}
+
+.positions-table input[type="checkbox"]:hover {
+  border-color: #9ca3af !important;
+  background-color: #f9fafb !important;
+}
+
+.positions-table input[type="checkbox"]:checked:hover {
+  background-color: #2563eb !important;
+}
+
+/* Override Flowbite checkbox dark theme */
+.flowbite-table-wrapper input[type="checkbox"] {
+  background-color: white !important;
+  border: 1px solid #d1d5db !important;
+}
+
+.flowbite-table-wrapper input[type="checkbox"]:checked {
+  background-color: #3b82f6 !important;
+  border-color: #3b82f6 !important;
+}
+
+/* Force light theme for all table elements */
+.flowbite-table-wrapper * {
+  color-scheme: light !important;
+}
+
+/* Custom checkbox styling for positions table */
+.checkbox-custom {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #d1d5db;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.checkbox-custom:checked {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+}
+
+.checkbox-custom:checked::after {
+  content: '✓';
+  position: absolute;
+  top: -2px;
+  left: 1px;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.checkbox-custom:hover {
+  border-color: #9ca3af;
+}
+
+.checkbox-custom:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* Horizontal scrollbar styling */
+.positions-table::-webkit-scrollbar {
+  height: 8px;
+}
+
+.positions-table::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.positions-table::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.positions-table::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Force white background for Flowbite table headers */
+.flowbite-table-wrapper table thead th {
+  background-color: #ffffff !important;
+  border-color: #f3f4f6 !important;
+}
+
+.flowbite-table-wrapper table thead th:hover {
+  background-color: #f9fafb !important;
+}
+
+/* Ensure checkbox column alignment */
+.positions-table th:first-child,
+.positions-table td:first-child {
+  width: 40px;
+  min-width: 40px;
+  max-width: 40px;
+  text-align: center;
+  vertical-align: middle;
+  padding: 4px 2px !important;
+}
+
+/* Perfect checkbox alignment */
+.positions-table th:first-child > div,
+.positions-table td:first-child > div {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.positions-table input[type="checkbox"] {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Improve text truncation and readability */
+.positions-table td .truncate {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Data cell font styling - 12px Poppins Arial */
+.positions-table td {
+  font-size: 12px !important;
+  font-family: 'Poppins', 'Helvetica', 'Arial', sans-serif !important;
+  font-weight: 400 !important;
+}
+
+/* Style for clickable cells */
+.positions-table td .cursor-pointer {
+  transition: all 0.15s ease;
+}
+
+.positions-table td .cursor-pointer:hover {
+  color: hsl(var(--primary)) !important;
+  font-weight: 500;
+}
+
+/* Enhanced row selection visual feedback */
+.positions-table tbody tr[data-state="selected"]:hover {
+  background-color: hsl(var(--accent) / 0.18) !important;
+  transform: translateY(-1px);
+}
+
+/* Enhanced button styling - no shadows */
+.positions-header-button-primary {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  border: none !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease !important;
+}
+
+.positions-header-button-primary:hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%) !important;
+  transform: scale(1.02) !important;
+}
+
+.positions-header-button-primary:active {
+  transform: scale(0.98) !important;
+}
+
+.positions-header-button-outline {
+  background: #ffffff !important;
+  border: 2px solid #d1d5db !important;
+  color: #374151 !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease !important;
+}
+
+.positions-header-button-outline:hover {
+  background: #f9fafb !important;
+  border-color: #9ca3af !important;
+  transform: scale(1.02) !important;
+}
+
+.positions-header-button-outline:active {
+  transform: scale(0.98) !important;
+  background: #f3f4f6 !important;
+}
+
+/* Clean text-style dropdown - no button appearance */
+.positions-header-dropdown {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  transition: color 0.2s ease;
+  min-width: auto;
+}
+
+.positions-header-dropdown:hover {
+  color: #3b82f6;
+}
+
+.positions-header-dropdown:focus {
+  color: #1d4ed8;
+}
+
+/* Positions header components now use inline styles matching leads design */
+
+/* Style the dropdown options */
+.positions-header-dropdown option {
+  background-color: white;
+  color: #1f2937;
+  padding: 8px 12px;
+  font-family: 'Poppins', 'Helvetica', 'Arial', sans-serif;
+}
+
+/* Clean KPI metrics - no gradients or animations */
+.positions-kpi-metric {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  transition: border-color 0.15s ease-in-out;
+}
+
+.positions-kpi-metric:hover {
+  border-color: #cbd5e1;
+  background-color: #f1f5f9;
+}
+
+/* Force Flowbite table dividers to be visible */
+.flowbite-table-wrapper table tbody tr {
+  border-bottom: 1px solid #e5e7eb !important;
+}
+
+.dark .flowbite-table-wrapper table tbody tr {
+  border-bottom: 1px solid #374151 !important;
+}
+
+.flowbite-table-wrapper table tbody tr:last-child {
+  border-bottom: 1px solid #e5e7eb !important;
+}
+
+.dark .flowbite-table-wrapper table tbody tr:last-child {
+  border-bottom: 1px solid #374151 !important;
+}
+
+/* Ensure divider visibility for Flowbite */
+.flowbite-table-wrapper .divide-y > * + * {
+  border-top: 1px solid #e5e7eb !important;
+}
+
+.dark .flowbite-table-wrapper .divide-y > * + * {
+  border-top: 1px solid #374151 !important;
+}
+
+/* Z-index layers for proper stacking */
+.z-header {
+  z-index: 1100;
+}
+
+.z-drawer {
+  z-index: 1300 !important;
+}
+
+/* Ensure all sheet/drawer overlays appear above header */
+[data-radix-dialog-overlay],
+[data-radix-dialog-content],
+.fixed.inset-0.z-50,
+.fixed.z-50 {
+  z-index: 1300 !important;
+}
+
+/* Sheet content specific z-index */
+[data-radix-dialog-content] {
+  z-index: 1300 !important;
+}
+
+/* New Lead Button Styling */
+.new-lead-btn {
+  background: linear-gradient(135deg, #143253 0%, #1a3a5c 100%) !important;
+}
+
+.new-lead-btn:hover {
+  background: linear-gradient(135deg, #0f2842 0%, #15334e 100%) !important;
+  transform: translateY(-1px) scale(1.02) !important;
+}
